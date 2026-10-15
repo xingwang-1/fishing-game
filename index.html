@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" content="#b6eff4" />
+    <meta name="description" content="瞄准鱼群，切换网具，开启一场轻松的海底捕鱼闯关。" />
+    <title>深蓝渔场 · 捕鱼大作战</title>
+  </head>
+  <body>
+    <main class="game-shell">
+      <canvas id="sea" aria-label="捕鱼游戏画面"></canvas>
+      <div class="sun-glow"></div>
+      <header class="topbar">
+        <a class="brand" href="#" aria-label="深蓝渔场首页">
+          <span class="brand-mark">✦</span>
+          <span>深蓝渔场<small>OCEAN CATCH</small></span>
+        </a>
+        <div class="level-chip"><span class="live-dot"></span><span id="area-name">珊瑚浅湾</span><b id="level-label">01 / 09</b></div>
+        <button id="sound-toggle" class="icon-button" aria-label="切换音效" title="音效开关">♫</button>
+      </header>
+
+      <section id="hud" class="hud hidden" aria-live="polite">
+        <div class="hud-card objective-card">
+          <span class="hud-kicker">本关目标</span>
+          <strong><span id="score">0</span><i> / </i><span id="target-score">450</span></strong>
+          <div class="progress-track"><span id="score-progress"></span></div>
+        </div>
+        <div class="hud-card timer-card">
+          <span class="hud-kicker">剩余时间</span>
+          <strong id="timer">01:30</strong>
+        </div>
+        <button id="pause-button" class="icon-button pause-button" aria-label="暂停游戏">Ⅱ</button>
+      </section>
+
+      <div id="toast" class="toast" role="status"></div>
+      <div class="bottom-hint"><kbd>左键</kbd> 发射渔网 <span>·</span> <kbd>右键</kbd> 切换网具</div>
+      <div class="net-indicator" id="net-indicator" aria-live="polite">
+        <span class="net-icon">◉</span><span><small>当前网具</small><b id="net-name">轻巧小网</b></span><kbd>右键切换</kbd>
+      </div>
+      <div class="boat" aria-hidden="true"><span class="boat-flag"></span><span class="boat-cabin"></span><span class="boat-hull"></span></div>
+
+      <section id="intro" class="overlay intro">
+        <div class="panel intro-panel">
+          <div class="eyebrow"><span>✦</span> SUNLIT LAGOON · 第一章</div>
+          <h1>深蓝<span>渔场</span></h1>
+          <p class="intro-copy">海风轻轻吹，鱼儿游成队。<br />选好渔网，来一场轻松的海底大丰收。</p>
+          <div class="intro-stats">
+            <div><b>09</b><small>趣味关卡</small></div><i></i><div><b>09</b><small>海洋鱼种</small></div><i></i><div><b>03</b><small>渔网大小</small></div>
+          </div>
+          <button id="start-button" class="primary-button">开始捕鱼 <span>→</span></button>
+          <button id="howto-button" class="text-button">玩法说明</button>
+        </div>
+        <div class="bubble-note">今天的海水<br /><b>刚刚好</b> ♡</div>
+      </section>
+
+      <section id="pause-screen" class="overlay hidden">
+        <div class="panel compact-panel">
+          <div class="eyebrow">TAKE A BREATH</div><h2>休息一下</h2><p>鱼群还在海里等你回来。</p>
+          <button id="resume-button" class="primary-button">继续捕鱼 <span>→</span></button>
+          <button id="pause-home-button" class="text-button">返回首页</button>
+        </div>
+      </section>
+
+      <section id="result-screen" class="overlay hidden">
+        <div class="panel compact-panel result-panel">
+          <div id="result-emoji" class="result-emoji">✦</div>
+          <div class="eyebrow" id="result-eyebrow">REEF COMPLETE</div><h2 id="result-title">满载而归！</h2>
+          <p id="result-copy">这一网收获真不错。</p>
+          <div class="result-score"><small>本关收获</small><b id="final-score">0</b><span>分</span></div>
+          <div class="stars" id="stars">★ ★ ★</div>
+          <button id="next-button" class="primary-button">下一关 <span>→</span></button>
+          <button id="retry-button" class="primary-button hidden">再试一次 <span>↻</span></button>
+          <button id="home-button" class="text-button">返回首页</button>
+        </div>
+      </section>
+
+      <dialog id="howto-dialog" class="howto-dialog">
+        <button id="close-howto" class="dialog-close" aria-label="关闭">×</button>
+        <div class="eyebrow">HOW TO PLAY</div><h2>挑一张合适的网</h2>
+        <p>左键朝鱼群发射。每种鱼都有不同的耐捕值；网越大，单次捕获进度越多，覆盖的范围也越广。</p>
+        <div class="guide-rows">
+          <div><span class="guide-net small">◉</span><span><b>小网</b><small>发射快，适合小鱼群</small></span><kbd>右键切换</kbd></div>
+          <div><span class="guide-net medium">◉</span><span><b>中网</b><small>范围和速度都刚刚好</small></span><kbd>右键切换</kbd></div>
+          <div><span class="guide-net large">◉</span><span><b>大网</b><small>一网多收，冷却稍长</small></span><kbd>右键切换</kbd></div>
+        </div>
+        <p class="guide-foot">在倒计时结束前达到目标分数，就能解锁下一片海域。</p>
+        <button id="got-it" class="primary-button">知道啦 <span>✓</span></button>
+      </dialog>
+      <div class="watermark">A LITTLE OCEAN ADVENTURE</div>
+    </main>
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
